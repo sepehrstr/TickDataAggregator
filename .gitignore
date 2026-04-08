@@ -1,0 +1,70 @@
+# ── Build outputs ─────────────────────────────────────────────────────────────
+bin/
+obj/
+out/
+publish/
+
+# ── VS Code ───────────────────────────────────────────────────────────────────
+.vscode/
+# Copilot workspace instructions are editor-local, not project artefacts
+.github/copilot-instructions.md
+
+# ── Visual Studio ─────────────────────────────────────────────────────────────
+.vs/
+*.user
+*.rsuser
+*.suo
+*.userosscache
+*.sln.docstates
+
+# ── Rider / IntelliJ / Resharper ──────────────────────────────────────────────────────────
+.idea/
+*.DotSettings.user
+
+# ── NuGet ─────────────────────────────────────────────────────────────────────
+*.nupkg
+*.snupkg
+packages/
+nuget.config.bak
+project.lock.json
+project.fragment.lock.json
+
+# ── .NET runtime artefacts ────────────────────────────────────────────────────
+*.dll
+*.exe
+*.pdb
+*.mdb
+
+# ── Test results & coverage ───────────────────────────────────────────────────
+TestResults/
+coverage/
+*.trx
+*.coveragexml
+*.cobertura.xml
+
+# ── Logs ──────────────────────────────────────────────────────────────────────
+logs/
+*.log
+
+# ── Secrets / environment ────────────────────────────────────────────────────
+.env
+.env.*
+appsettings.local.json
+appsettings.*.local.json
+secrets.json
+
+# ── Docker ────────────────────────────────────────────────────────────────────
+docker-compose.override.yml
+
+# ── macOS ─────────────────────────────────────────────────────────────────────
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# ── Windows ───────────────────────────────────────────────────────────────────
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+
+
