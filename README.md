@@ -57,9 +57,9 @@
 ## Текущее состояние конфигурации
 
 В `appsettings.json` по умолчанию:
-- **Binance** — включён
-- **Coinbase** — включён
-- **ExchangeA / ExchangeB / ExchangeC** — выключены
+- **Binance** — выключены
+- **Coinbase** — выключены
+- **ExchangeA / ExchangeB / ExchangeC** — включён
 
 При необходимости можно переключить режим работы, изменив флаг `Enabled` у нужных источников.
 
