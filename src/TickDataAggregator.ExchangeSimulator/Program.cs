@@ -14,7 +14,7 @@ app.UseWebSockets();
 var tickers = new[] { "BTCUSD", "ETHUSD", "XAUUSD", "EURUSD", "GBPUSD", "USDJPY" };
 var random = new Random();
 
-// Exchange A — JSON format
+// Биржа A — формат JSON
 app.Map("/exchange-a", async context =>
 {
     if (!context.WebSockets.IsWebSocketRequest)
@@ -47,7 +47,7 @@ app.Map("/exchange-a", async context =>
             var bytes = Encoding.UTF8.GetBytes(json);
             await ws.SendAsync(bytes, WebSocketMessageType.Text, true, CancellationToken.None);
 
-            await Task.Delay(random.Next(20, 80)); // ~15-50 ticks/sec
+            await Task.Delay(random.Next(20, 80)); // ~15-50 тиков/сек
         }
     }
     catch (WebSocketException)
@@ -56,7 +56,7 @@ app.Map("/exchange-a", async context =>
     }
 });
 
-// Exchange B — CSV format: ticker,price,volume,timestamp_ms
+// Биржа B — формат CSV: ticker,price,volume,timestamp_ms
 app.Map("/exchange-b", async context =>
 {
     if (!context.WebSockets.IsWebSocketRequest)
@@ -82,7 +82,7 @@ app.Map("/exchange-b", async context =>
             var bytes = Encoding.UTF8.GetBytes(csv);
             await ws.SendAsync(bytes, WebSocketMessageType.Text, true, CancellationToken.None);
 
-            await Task.Delay(random.Next(25, 100)); // ~10-40 ticks/sec
+            await Task.Delay(random.Next(25, 100)); // ~10-40 тиков/сек
         }
     }
     catch (WebSocketException)
@@ -91,7 +91,7 @@ app.Map("/exchange-b", async context =>
     }
 });
 
-// Exchange C — Pipe-delimited: ticker|price|volume|datetime
+// Биржа C — формат Pipe-delimited: ticker|price|volume|datetime
 app.Map("/exchange-c", async context =>
 {
     if (!context.WebSockets.IsWebSocketRequest)
@@ -111,14 +111,14 @@ app.Map("/exchange-c", async context =>
             var ticker = tickers[random.Next(tickers.Length)];
             var price = Math.Round(GetBasePrice(ticker) + (random.NextDouble() - 0.5) * 10, 2);
             var volume = Math.Round(random.NextDouble() * 100, 4);
-            // ISO 8601 with explicit Z suffix — unambiguously UTC, no machine-timezone dependency
+            // ISO 8601 с явным суффиксом Z — однозначно UTC, без зависимости от таймзоны машины
             var dt = DateTimeOffset.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss.fffZ", CultureInfo.InvariantCulture);
 
             var pipe = string.Create(CultureInfo.InvariantCulture, $"{ticker}|{price}|{volume}|{dt}");
             var bytes = Encoding.UTF8.GetBytes(pipe);
             await ws.SendAsync(bytes, WebSocketMessageType.Text, true, CancellationToken.None);
 
-            await Task.Delay(random.Next(30, 120)); // ~8-33 ticks/sec
+            await Task.Delay(random.Next(30, 120)); // ~8-33 тиков/сек
         }
     }
     catch (WebSocketException)
@@ -141,6 +141,3 @@ static double GetBasePrice(string ticker) => ticker switch
     "USDJPY" => 154,
     _ => 100
 };
-
-// Make Program accessible for integration tests
-public partial class Program;
